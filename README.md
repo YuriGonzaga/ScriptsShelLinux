@@ -18,6 +18,8 @@ rm -r /bin/ScriptsShelLinux/
 
 comandos para deixar o arquivo execultavel
 
+cd /bin
+
 chmod +x SSHOnRoot up
 
 
