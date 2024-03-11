@@ -3,7 +3,7 @@ ScriptsShelLinux
 
 fazer a instacao do git
 
-sudo apt-get install git-all
+sudo apt-get install git-all -y
 
 
 baixar todos os scripts na cd /bin
