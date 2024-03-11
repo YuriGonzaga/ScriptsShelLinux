@@ -3,3 +3,5 @@ sudo apt-get update && sudo apt-get dist-upgrade -y
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install curl -y
 sudo apt-get install net-tools -y
+sudo apt install git
+echo "Instalacao concluida com sucesso!"
