@@ -9,5 +9,6 @@ sudo apt install git
 baixar todos os scripts na cd /bin
 
 
-comandos para deixar o arquivo execultavel 
+comandos para deixar o arquivo execultavel
+
 chmod +x nome_do_arquivo
