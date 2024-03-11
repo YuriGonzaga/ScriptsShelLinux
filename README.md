@@ -8,7 +8,7 @@ sudo apt-get install git-all -y
 
 baixar todos os scripts na cd /bin
 
-usando o git clone (https://github.com/YuriGonzaga/ScriptsShelLinux.git)
+usando o git clone https://github.com/YuriGonzaga/ScriptsShelLinux.git
 
 cd /bin/ScriptsShelLinux/
 
