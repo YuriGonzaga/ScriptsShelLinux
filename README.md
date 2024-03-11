@@ -8,6 +8,7 @@ sudo apt install git
 
 baixar todos os scripts na cd /bin
 
+usando o git clone url
 
 comandos para deixar o arquivo execultavel
 
