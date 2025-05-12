@@ -7,7 +7,7 @@ NC='\033[0m' # Sem cor
 
 # Verifica se o script está sendo executado como root
 if [[ $(id -u) -ne 0 ]]; then
-    echo -e "${RED}❌ Este script precisa ser executado com privilégios de superusuário.${NC}"
+    echo -e "${RED} Este script precisa ser executado com privilégios de superusuário.${NC}"
     exit 1
 fi
 
@@ -19,7 +19,7 @@ backup_file="${ssh_config_file}.bak"
 if cp "$ssh_config_file" "$backup_file"; then
     echo -e "${GREEN}✔ Backup criado com sucesso: $backup_file${NC}"
 else
-    echo -e "${RED}❌ Falha ao criar backup de $ssh_config_file${NC}"
+    echo -e "${RED} Falha ao criar backup de $ssh_config_file${NC}"
     exit 1
 fi
 
@@ -42,8 +42,8 @@ change_ssh_config "PermitRootLogin" "yes"
 if systemctl restart ssh; then
     echo -e "${GREEN}✔ Serviço SSH reiniciado com sucesso!${NC}"
 else
-    echo -e "${RED}❌ Falha ao reiniciar o serviço SSH! Verifique as configurações.${NC}"
+    echo -e "${RED} Falha ao reiniciar o serviço SSH! Verifique as configurações.${NC}"
     exit 1
 fi
 
-echo -e "${GREEN}✅ Configurações aplicadas com sucesso!${NC}"
+echo -e "${GREEN}✔ Configurações aplicadas com sucesso!${NC}"
