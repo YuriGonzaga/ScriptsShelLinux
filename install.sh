@@ -6,7 +6,7 @@ RED='\033[0;31m'     # Vermelho
 NC='\033[0m'         # Sem cor (reset)
 
 # Instalando o Git
-echo -e "${GREEN}✔ Instalando Git...${NC}"
+echo -e "${GREEN} ✔ Instalando Git...${NC}"
 sudo apt-get update
 sudo apt-get install git-all -y || {
     echo -e "${RED} Falha ao instalar o Git. Verifique sua conexão ou repositórios.${NC}";
