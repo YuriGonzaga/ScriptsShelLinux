@@ -5,40 +5,40 @@ GREEN='\033[0;32m'   # Verde
 NC='\033[0m'         # Sem cor (reset)
 
 # Atualizando pacotes
-echo -e "${GREEN}Atualizando pacotes do sistema...${NC}"
+echo -e "${GREEN}✔ Atualizando pacotes do sistema...${NC}"
 sudo apt-get update && sudo apt-get upgrade -y
 
 # Instalando dependências necessárias para o Docker
-echo -e "${GREEN}Instalando dependências do Docker...${NC}"
+echo -e "${GREEN}✔ Instalando dependências do Docker...${NC}"
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
 # Adicionando o repositório oficial do Docker
-echo -e "${GREEN}Adicionando o repositório oficial do Docker...${NC}"
+echo -e "${GREEN}✔ Adicionando o repositório oficial do Docker...${NC}"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Instalando o Docker
-echo -e "${GREEN}Instalando o Docker...${NC}"
+echo -e "${GREEN}✔ Instalando o Docker...${NC}"
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 # Verificando se o Docker foi instalado corretamente
-echo -e "${GREEN}Verificando instalação do Docker...${NC}"
+echo -e "${GREEN}✔ Verificando instalação do Docker...${NC}"
 sudo docker --version
 
 # Instalando o Docker Compose
-echo -e "${GREEN}Instalando Docker Compose...${NC}"
+echo -e "${GREEN}✔ Instalando Docker Compose...${NC}"
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Verificando se o Docker Compose foi instalado corretamente
-echo -e "${GREEN}Verificando instalação do Docker Compose...${NC}"
+echo -e "${GREEN}✔ Verificando instalação do Docker Compose...${NC}"
 docker-compose --version
 
 # Instalando o Portainer
-echo -e "${GREEN}Instalando o Portainer...${NC}"
+echo -e "${GREEN}✔ Instalando o Portainer...${NC}"
 sudo docker volume create portainer_data
 sudo docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 
 # Mensagem de conclusão
-echo -e "${GREEN}Docker e Portainer instalados com sucesso! Acesse o Portainer em http://localhost:9000${NC}"
+echo -e "${GREEN}✔ Docker e Portainer instalados com sucesso! Acesse o Portainer em http://localhost:9000${NC}"
