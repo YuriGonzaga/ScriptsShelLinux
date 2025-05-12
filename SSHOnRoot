@@ -1,19 +1,29 @@
 #!/bin/bash
 
-# Verifica se o script está sendo executado com permissões de superusuário
+# Cores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # Sem cor
+
+# Verifica se o script está sendo executado como root
 if [[ $(id -u) -ne 0 ]]; then
-    echo "Este script precisa ser executado com privilégios de superusuário."
+    echo -e "${RED}❌ Este script precisa ser executado com privilégios de superusuário.${NC}"
     exit 1
 fi
 
-# Caminho para o arquivo de configuração SSH
+# Caminho do arquivo de configuração
 ssh_config_file="/etc/ssh/sshd_config"
-
-# Faz um backup do arquivo original
 backup_file="${ssh_config_file}.bak"
-cp "$ssh_config_file" "$backup_file"
 
-# Função para alterar ou adicionar uma configuração no arquivo sshd_config
+# Faz backup
+if cp "$ssh_config_file" "$backup_file"; then
+    echo -e "${GREEN}✔ Backup criado com sucesso: $backup_file${NC}"
+else
+    echo -e "${RED}❌ Falha ao criar backup de $ssh_config_file${NC}"
+    exit 1
+fi
+
+# Função para alterar ou adicionar uma diretiva no sshd_config
 change_ssh_config() {
     local key="$1"
     local value="$2"
@@ -24,11 +34,16 @@ change_ssh_config() {
     fi
 }
 
-# Exemplo de uso da função para alterar configurações (descomente e modifique conforme necessário):
-# change_ssh_config "Port" "2222"
+# Modifique aqui as configurações desejadas:
 change_ssh_config "PermitRootLogin" "yes"
+# Exemplo extra: change_ssh_config "Port" "2222"
 
-# Reinicia o serviço SSH para aplicar as alterações
-systemctl restart ssh
+# Reinicia o serviço SSH
+if systemctl restart ssh; then
+    echo -e "${GREEN}✔ Serviço SSH reiniciado com sucesso!${NC}"
+else
+    echo -e "${RED}❌ Falha ao reiniciar o serviço SSH! Verifique as configurações.${NC}"
+    exit 1
+fi
 
-echo "Configurações alteradas com sucesso!"
+echo -e "${GREEN}✅ Configurações aplicadas com sucesso!${NC}"
