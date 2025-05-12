@@ -5,21 +5,21 @@ GREEN='\033[0;32m'   # Verde
 NC='\033[0m'         # Sem cor (reset)
 
 # Atualizando pacotes do sistema
-echo -e "${GREEN}Atualizando pacotes do sistema...${NC}"
+echo -e "${GREEN}✔ Atualizando pacotes do sistema...${NC}"
 sudo apt-get update && sudo apt-get dist-upgrade -y
 sudo apt-get update && sudo apt-get upgrade -y
 
 # Instalando curl
-echo -e "${GREEN}Instalando o curl...${NC}"
+echo -e "${GREEN}✔ Instalando o curl...${NC}"
 sudo apt-get install curl -y
 
 # Instalando net-tools
-echo -e "${GREEN}Instalando o net-tools...${NC}"
+echo -e "${GREEN}✔ Instalando o net-tools...${NC}"
 sudo apt-get install net-tools -y
 
 # Atualizando pacotes adicionais
-echo -e "${GREEN}Realizando atualização completa do sistema...${NC}"
+echo -e "${GREEN}✔ Realizando atualização completa do sistema...${NC}"
 sudo apt update && sudo apt full-upgrade && sudo apt autoclean && sudo apt autoremove -y
 
 # Mensagem de conclusão
-echo -e "${GREEN}Atualização concluída com sucesso!${NC}"
+echo -e "${GREEN}✔ Atualização concluída com sucesso!${NC}"
