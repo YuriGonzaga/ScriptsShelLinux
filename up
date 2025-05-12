@@ -1,7 +1,18 @@
 #!/bin/bash
+
+# Atualiza a lista de pacotes e realiza a atualização completa do sistema
+echo "Atualizando pacotes e realizando upgrade..."
 sudo apt-get update && sudo apt-get dist-upgrade -y
-sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install curl -y
-sudo apt-get install net-tools -y
-sudo apt update && sudo apt full-upgrade && sudo apt autoclean && sudo apt autoremove -y
-echo "Instalacao concluida com sucesso!"
+
+# Instala os pacotes essenciais
+echo "Instalando pacotes essenciais..."
+sudo apt-get install curl net-tools -y
+
+# Realiza a atualização completa, limpa pacotes desnecessários e remove pacotes obsoletos
+echo "Realizando manutenção do sistema..."
+sudo apt update && sudo apt full-upgrade -y
+sudo apt autoclean -y
+sudo apt autoremove -y
+
+# Mensagem de conclusão
+echo "Instalação e atualização concluídas com sucesso!"
