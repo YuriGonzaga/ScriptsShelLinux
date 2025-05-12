@@ -1,18 +1,22 @@
 #!/bin/bash
 
+# Definindo a cor vermelha
+RED='\033[0;31m'    # Vermelho
+NC='\033[0m'        # Sem cor (reset)
+
 # Atualiza a lista de pacotes e realiza a atualização completa do sistema
-echo "Atualizando pacotes e realizando upgrade..."
+echo -e "${RED}Atualizando pacotes e realizando upgrade...${NC}"
 sudo apt-get update && sudo apt-get dist-upgrade -y
 
 # Instala os pacotes essenciais
-echo "Instalando pacotes essenciais..."
+echo -e "${RED}Instalando pacotes essenciais...${NC}"
 sudo apt-get install curl net-tools -y
 
 # Realiza a atualização completa, limpa pacotes desnecessários e remove pacotes obsoletos
-echo "Realizando manutenção do sistema..."
+echo -e "${RED}Realizando manutenção do sistema...${NC}"
 sudo apt update && sudo apt full-upgrade -y
 sudo apt autoclean -y
 sudo apt autoremove -y
 
 # Mensagem de conclusão
-echo "Instalação e atualização concluídas com sucesso!"
+echo -e "${RED}Instalação e atualização concluídas com sucesso!${NC}"
