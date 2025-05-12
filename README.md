@@ -121,10 +121,3 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 Feito com 💻 por [Yuri Gonzaga](https://github.com/YuriGonzaga)
 
 Contribuições são bem-vindas!
-
-```
-
----
-
-Se quiser, posso também te gerar um `install.sh` e o arquivo de `LICENSE` prontos para subir junto ao repositório. Deseja isso agora?
-```
