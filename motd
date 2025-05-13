@@ -39,7 +39,7 @@ echo -e "╠══════════════════════�
 echo -e "║ ${GREEN}SSHOnRoot${NC}    ║ ${YELLOW}Ativa o login SSH para o usuário root.${NC} ║"
 echo -e "║ ${GREEN}up${NC}           ║ ${YELLOW}Atualiza o sistema.${NC}                    ║"
 echo -e "║ ${GREEN}portainer${NC}    ║ ${YELLOW}Instala Docker e Portainer.${NC}            ║"
-echo -e "║ ${GREEN}motd${NC}         ║ ${YELLOW}Motd personalizado.${NC}                    ║"
+echo -e "║ ${GREEN}motd${NC}         ║ ${YELLOW}Motd personalizado.                         ║"
 echo -e "╚══════════════════════════════════════════════════════════════════════════════════╝"
 echo
 
