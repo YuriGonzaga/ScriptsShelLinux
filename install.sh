@@ -56,3 +56,4 @@ echo -e "${GREEN}✔ Instalação concluída! Você pode rodar os scripts com:${
 echo -e "${GREEN}    SSHOnRoot${NC}"
 echo -e "${GREEN}    up${NC}"
 echo -e "${GREEN}    portrainer${NC}"
+echo -e "${GREEN}    motd${NC}"
