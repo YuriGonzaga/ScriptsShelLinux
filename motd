@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# Cores para mensagens de status
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${GREEN}➡️ Instalando MOTD personalizado...${NC}"
+
+# Caminho do novo MOTD
+MOTD_PATH="/etc/update-motd.d/00-custom"
+
+# Cria o conteúdo do MOTD
+sudo tee "$MOTD_PATH" > /dev/null << 'EOF'
+#!/bin/bash
+
+# Cores ANSI
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[1;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${GREEN}🖥️  Bem-vindo ao servidor ${NC}"
+echo
+
+# Instalação automática via GitHub
+echo -e "${YELLOW}⚙️ Instalação automática de scripts:${NC}"
+echo -e "    ${BLUE}bash <(curl -s https://raw.githubusercontent.com/YuriGonzaga/ScriptsShelLinux/main/install.sh)${NC}"
+echo
+
+# Tabela com Scripts e Descrições
+echo -e "${BLUE}🔧 Scripts e Descrições:${NC}"
+echo -e "╔══════════════════════════════════════════════════════════════════════════════════╗"
+echo -e "║ ${GREEN}Script${NC}       ║ ${YELLOW}Descrição${NC}                              ║"
+echo -e "╠══════════════════════════════════════════════════════════════════════════════════╣"
+echo -e "║ ${GREEN}SSHOnRoot${NC}    ║ ${YELLOW}Ativa o login SSH para o usuário root.${NC} ║"
+echo -e "║ ${GREEN}up${NC}           ║ ${YELLOW}Atualiza o sistema.${NC}                    ║"
+echo -e "║ ${GREEN}portainer${NC}    ║ ${YELLOW}Instala Docker e Portainer.${NC}            ║"
+echo -e "╚══════════════════════════════════════════════════════════════════════════════════╝"
+echo
+
+# IP da máquina
+IP=$(hostname -I | awk '{print $1}')
+echo -e "${BLUE}🌐 Endereço IP: ${YELLOW}$IP${NC}"
+
+# Uptime
+UPTIME=$(uptime -p)
+echo -e "⏱️  Uptime: ${YELLOW}$UPTIME${NC}"
+echo
+
+# Verificando status dos serviços
+echo -e "${BLUE}🔍 Verificando status dos serviços:${NC}"
+
+# Docker
+if systemctl is-active --quiet docker; then
+  echo -e "  ✅ Docker: ${GREEN}Rodando${NC}"
+else
+  echo -e "  ❌ Docker: ${RED}Parado${NC}"
+fi
+
+# Portainer
+if docker ps | grep -q portainer; then
+  echo -e "  ✅ Portainer: ${GREEN}Rodando no Docker${NC}"
+else
+  echo -e "  ❌ Portainer: ${RED}Não encontrado no Docker${NC}"
+fi
+
+# SSH
+if systemctl is-active --quiet ssh; then
+  echo -e "  ✅ SSH: ${GREEN}Ativo${NC}"
+else
+  echo -e "  ❌ SSH: ${RED}Parado${NC}"
+fi
+
+# SSH root login
+if grep -q "^PermitRootLogin yes" /etc/ssh/sshd_config; then
+  echo -e "  🔐 SSH como root: ${GREEN}Permitido${NC}"
+else
+  echo -e "  🔐 SSH como root: ${RED}Bloqueado${NC}"
+fi
+echo
+
+# Uso de recursos
+echo -e "${BLUE}📊 Uso de recursos:${NC}"
+
+# CPU
+cpu_load=$(top -bn1 | grep "load average:" | awk '{print $10 $11 $12}')
+echo -e "  🧠 Carga da CPU: ${YELLOW}$cpu_load${NC}"
+
+# Memória
+mem_info=$(free -h | grep Mem)
+mem_used=$(echo $mem_info | awk '{print $3}')
+mem_total=$(echo $mem_info | awk '{print $2}')
+echo -e "  💾 Memória: ${YELLOW}$mem_used / $mem_total${NC}"
+
+# Disco
+disk_usage=$(df -h / | awk 'NR==2 {print $3 " / " $2 " (" $5 " usado)"}')
+echo -e "  🗄️  Disco raiz: ${YELLOW}$disk_usage${NC}"
+EOF
+
+# Permissão de execução
+sudo chmod +x "$MOTD_PATH"
+
+# Opcional: remover outros MOTDs padrão
+sudo rm -f /etc/update-motd.d/10-uname /etc/update-motd.d/00-header /etc/update-motd.d/80-livepatch 2>/dev/null
+
+echo -e "${GREEN}✅ MOTD personalizado instalado com sucesso!${NC}"
