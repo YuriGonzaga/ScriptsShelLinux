@@ -94,7 +94,9 @@ up          # Atualiza o sistema (apt update && upgrade)
 | Script      | Descrição                                              |
 | ----------- | ------------------------------------------------------ |
 | `SSHOnRoot` | Ativa o login SSH para o usuário root.                 |
-| `up`        | Atualiza o sistema com `apt update && apt upgrade -y`. |
+| `up`        | Atualiza o sistema                                     |  
+| `portrainer`| Instala Docker e Portrainer                            |              
+
 
 ---
 
