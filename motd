@@ -5,7 +5,7 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-echo -e "${GREEN}➡️ Instalando MOTD personalizado...${NC}"
+echo -e "${GREEN}✔ Instalando MOTD personalizado...${NC}"
 
 # Caminho do novo MOTD
 MOTD_PATH="/etc/update-motd.d/00-custom"
@@ -107,4 +107,4 @@ sudo chmod +x "$MOTD_PATH"
 # Opcional: remover outros MOTDs padrão
 sudo rm -f /etc/update-motd.d/10-uname /etc/update-motd.d/00-header /etc/update-motd.d/80-livepatch 2>/dev/null
 
-echo -e "${GREEN}✅ MOTD personalizado instalado com sucesso!${NC}"
+echo -e "${GREEN}✔  MOTD personalizado instalado com sucesso!${NC}"
