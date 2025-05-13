@@ -27,6 +27,8 @@ echo
 # Instalação automática via GitHub
 echo -e "${YELLOW}⚙️ Instalação automática de scripts:${NC}"
 echo -e "    ${BLUE}bash <(curl -s https://raw.githubusercontent.com/YuriGonzaga/ScriptsShelLinux/main/install.sh)${NC}"
+echo -e "    ${BLUE}wget -qO- https://raw.githubusercontent.com/YuriGonzaga/ScriptsShelLinux/main/install.sh | bash${NC}"
+
 echo
 
 # Tabela com Scripts e Descrições
