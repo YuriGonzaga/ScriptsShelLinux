@@ -28,7 +28,7 @@ cd ScriptsShelLinux || {
 
 # Movendo os scripts para /bin
 echo -e "${GREEN}✔ Movendo scripts para /bin...${NC}"
-sudo mv SSHOnRoot portainer up /bin/ || {
+sudo mv SSHOnRoot portainer motd up /bin/ || {
     echo -e "${RED} Falha ao mover os scripts para /bin.${NC}";
     exit 1;
 }
@@ -46,7 +46,7 @@ rm -rf ScriptsShelLinux || {
 
 # Tornando os scripts executáveis
 echo -e "${GREEN}✔ Tornando scripts executáveis...${NC}"
-sudo chmod +x /bin/SSHOnRoot /bin/portainer /bin/up || {
+sudo chmod +x /bin/SSHOnRoot /bin/portainer /bin/motd /bin/up || {
     echo -e "${RED} Falha ao tornar os scripts executáveis.${NC}";
     exit 1;
 }
