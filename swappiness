@@ -1,8 +1,13 @@
 #!/bin/bash
 
+# Cores ANSI
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 # Verifica se está sendo executado como root
 if [ "$EUID" -ne 0 ]; then
-  echo "Por favor, execute como root (use sudo)."
+  echo -e "${RED}❌ Por favor, execute como root (use sudo).${NC}"
   exit 1
 fi
 
@@ -14,17 +19,26 @@ CONF_FILE="/etc/sysctl.conf"
 
 # Verifica se já existe uma linha com vm.swappiness
 if grep -q "^vm.swappiness=" "$CONF_FILE"; then
-  echo "Atualizando valor existente de vm.swappiness para $SWAP_VALUE..."
+  echo -e "${GREEN}✔ Atualizando valor existente de vm.swappiness para $SWAP_VALUE...${NC}"
   sed -i "s/^vm.swappiness=.*/vm.swappiness=$SWAP_VALUE/" "$CONF_FILE"
 else
-  echo "Adicionando vm.swappiness=$SWAP_VALUE ao final de $CONF_FILE..."
+  echo -e "${GREEN}✔ Adicionando vm.swappiness=$SWAP_VALUE ao final de $CONF_FILE...${NC}"
   echo "vm.swappiness=$SWAP_VALUE" >> "$CONF_FILE"
 fi
 
 # Aplica a nova configuração
-echo "Aplicando nova configuração..."
-sysctl -p
+echo -e "${GREEN}✔ Aplicando nova configuração...${NC}"
+if sysctl -p > /dev/null 2>&1; then
+  echo -e "${GREEN}✔ Configuração aplicada com sucesso.${NC}"
+else
+  echo -e "${RED}❌ Falha ao aplicar a configuração com sysctl -p.${NC}"
+  exit 1
+fi
 
 # Mostra o valor atual
-echo "Valor atual de swappiness:"
-sysctl vm.swappiness
+ATUAL=$(sysctl -n vm.swappiness)
+if [ "$ATUAL" -eq "$SWAP_VALUE" ]; then
+  echo -e "${GREEN}✔ Valor atual de swappiness: $ATUAL${NC}"
+else
+  echo -e "${RED}❌ Valor atual de swappiness: $ATUAL (esperado: $SWAP_VALUE)${NC}"
+fi
