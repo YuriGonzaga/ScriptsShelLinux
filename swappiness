@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Verifica se está sendo executado como root
+if [ "$EUID" -ne 0 ]; then
+  echo "Por favor, execute como root (use sudo)."
+  exit 1
+fi
+
+# Valor desejado de swappiness
+SWAP_VALUE=10
+
+# Arquivo de configuração
+CONF_FILE="/etc/sysctl.conf"
+
+# Verifica se já existe uma linha com vm.swappiness
+if grep -q "^vm.swappiness=" "$CONF_FILE"; then
+  echo "Atualizando valor existente de vm.swappiness para $SWAP_VALUE..."
+  sed -i "s/^vm.swappiness=.*/vm.swappiness=$SWAP_VALUE/" "$CONF_FILE"
+else
+  echo "Adicionando vm.swappiness=$SWAP_VALUE ao final de $CONF_FILE..."
+  echo "vm.swappiness=$SWAP_VALUE" >> "$CONF_FILE"
+fi
+
+# Aplica a nova configuração
+echo "Aplicando nova configuração..."
+sysctl -p
+
+# Mostra o valor atual
+echo "Valor atual de swappiness:"
+sysctl vm.swappiness
