@@ -60,7 +60,7 @@ cd ScriptsShelLinux
 #### 📤 4. Mover os scripts para o diretório global
 
 ```bash
-sudo mv SSHOnRoot up /bin/
+sudo mv SSHOnRoot portainer motd up swappiness /bin/
 ```
 
 #### ✅ 5. Tornar os scripts executáveis
