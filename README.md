@@ -66,7 +66,7 @@ sudo mv SSHOnRoot portainer motd up swappiness /bin/
 #### ✅ 5. Tornar os scripts executáveis
 
 ```bash
-sudo chmod +x /bin/SSHOnRoot /bin/up
+sudo chmod +x /bin/SSHOnRoot /bin/portainer /bin/motd /bin/up /bin/swappiness
 ```
 
 #### 🧹 6. Limpar arquivos temporários
