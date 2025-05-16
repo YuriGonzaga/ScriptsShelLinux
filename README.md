@@ -74,20 +74,10 @@ sudo chmod +x /bin/SSHOnRoot /bin/up
 ```bash
 cd ..
 rm -rf ScriptsShelLinux
+
+
 ```
 
----
-
-## 🚀 Como usar
-
-Após a instalação, use os scripts diretamente no terminal:
-
-```bash
-SSHOnRoot   # Ativa SSH para o usuário root
-up          # Atualiza o sistema (apt update && upgrade)
-```
-
----
 
 ## 📄 Scripts incluídos
 
@@ -95,7 +85,9 @@ up          # Atualiza o sistema (apt update && upgrade)
 | ----------- | ------------------------------------------------------ |
 | `SSHOnRoot` | Ativa o login SSH para o usuário root.                 |
 | `up`        | Atualiza o sistema                                     |  
-| `portrainer`| Instala Docker e Portrainer                            |              
+| `portrainer`| Instala Docker e Portrainer                            |     
+| `motd      `| Motd personalizado                                     | 
+| `swappiness`| Muda o valor do swappiness 10                          |   
 
 
 ---
