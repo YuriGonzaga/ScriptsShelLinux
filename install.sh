@@ -28,7 +28,7 @@ cd ScriptsShelLinux || {
 
 # Movendo os scripts para /bin
 echo -e "${GREEN}✔ Movendo scripts para /bin...${NC}"
-sudo mv SSHOnRoot portainer motd up /bin/ || {
+sudo mv SSHOnRoot portainer motd up swappiness /bin/ || {
     echo -e "${RED} Falha ao mover os scripts para /bin.${NC}";
     exit 1;
 }
@@ -46,7 +46,7 @@ rm -rf ScriptsShelLinux || {
 
 # Tornando os scripts executáveis
 echo -e "${GREEN}✔ Tornando scripts executáveis...${NC}"
-sudo chmod +x /bin/SSHOnRoot /bin/portainer /bin/motd /bin/up || {
+sudo chmod +x /bin/SSHOnRoot /bin/portainer /bin/motd /bin/up /bin/swappiness || {
     echo -e "${RED} Falha ao tornar os scripts executáveis.${NC}";
     exit 1;
 }
@@ -56,4 +56,5 @@ echo -e "${GREEN}✔ Instalação concluída! Você pode rodar os scripts com:${
 echo -e "${GREEN}    SSHOnRoot${NC}"
 echo -e "${GREEN}    up${NC}"
 echo -e "${GREEN}    portrainer${NC}"
-echo -e "${GREEN}    motd${NC}"
+echo -e "${GREEN}    motd${NC}"     
+echo -e "${GREEN}    swappiness${NC}" 
